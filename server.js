@@ -25,6 +25,7 @@ server.get("/teams", teams.getAllTeams)
 server.get("/teams/:teamid", teams.getTeam)
 
 // POST
+server.post("/login", users.logIn)
 server.post("/create/:user", authorize, users.createUser)
 server.post("/create/:team", authorize, teams,createTeam)
 server.post("/create/:run", authorize, runs.createRun)

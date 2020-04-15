@@ -7,7 +7,7 @@ const SECRET = process.env.JWT_SECRET;
 
 
 function getAllMyRuns(req, res, next){
-
+  
 }
 
 function getRunsInDates(req, res, next) {
