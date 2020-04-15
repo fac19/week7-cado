@@ -30,9 +30,9 @@ $ psql -c "CREATE DATABASE week7cado_db WITH OWNER myuser"
 1. Run `psql` to enter Postgres CLI
 2. Connect to database `# \c week7cado_db`
 3. Initialise database `# \i database/init.sql`
-4. then grant priviliges:
-* `GRANT ALL PRIVILEGES ON DATABASE week7cado_db TO your-username;`
-* `GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO your-username;`
+4. then grant privileges:
+   * `GRANT ALL PRIVILEGES ON DATABASE week7cado_db TO your-username;`
+   * `GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO your-username;`
 
 
 ## Database Schema
