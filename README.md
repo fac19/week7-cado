@@ -24,7 +24,7 @@ PGPASSWORD=mypassword
 $ psql -c "CREATE USER myuser WITH PASSWORD 'mypassword'"
 $ psql -c "ALTER USER myuser WITH SUPERUSER"
 $ psql -c "CREATE DATABASE week7cado_db WITH OWNER myuser"
-$ psql -c "CREATE DATABASE week7cado_db WITH OWNER myuser"
+$ psql -c "CREATE DATABASE week7cado_test_db WITH OWNER myuser"
 ```
 
 1. Run `psql` to enter Postgres CLI
