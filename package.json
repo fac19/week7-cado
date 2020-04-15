@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test server": "tape tests/server.test.js | tap-spec",
+    "test db": "PGDATABASE=test_db tape 'workshop/tests/*' | tap-spec",
     "dev": "nodemon server.js"
   },
   "repository": {
