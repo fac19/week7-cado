@@ -1,5 +1,12 @@
 const db = require('../database/connection')
 
+function getAllRuns() {
+  return db
+    .query('SELECT * FROM runs')
+    .then(result => result.rows)
+    .catch(error => console.error(error))
+}
+
 function getAllMyRuns(id) {
   return db
     .query('SELECT * FROM runs WHERE id = ($1)', [id])
@@ -23,11 +30,21 @@ function getSpecificRun(runId) {
     .catch(error => console.error(error))
 }
 
-function createRun() {}
+function createRun(runData) {
+  console.log(runData)
+  return db
+    .query(
+      'INSERT INTO runs (user_id, distance, start_time, end_time, date) VALUES ($1, $2, $3, $4, $5)', // @James Error was typo! 'INTO runs' was 'INTO run'
+      [runData.user_id, runData.distance, runData.start_time, runData.end_time, runData.date],
+    )
+    .catch(err => err)
+}
+
 function editRun() {}
 function deleteRun() {}
 
 module.exports = {
+  getAllRuns, // New query 
   getAllMyRuns,
   getRunsInDates,
   getSpecificRun,

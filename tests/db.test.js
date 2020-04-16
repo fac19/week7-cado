@@ -178,14 +178,13 @@ test("I want to get all userNames from a teamName", (t) => {
             });
         });
     });
-})
+  })  
     .catch((error) => {
       t.error(error);
       t.end();
     });
 });
 
-// test getTools()
 test("Get can all teams", (t) => {
   build().then(() => {
     modelTeams
@@ -196,6 +195,32 @@ test("Get can all teams", (t) => {
         t.equal(firstResult.team_name, 'Monkeys', `First team name should be "Monkeys" and is ${firstResult.team_name}`);
         t.equal(lastResult.team_name, 'Trees', `Last team name should be "Trees" and is ${lastResult.team_name}`);
         t.end();
+      })
+      .catch((error) => {
+        t.error(error);
+        t.end();
+      });
+  });
+});
+
+test("Create a new run", (t) => {
+  const runData = {
+    user_id: 1,
+    distance : 1700,
+    start_time: "00:00:00",
+    end_time : "00:00:40",
+    date: "2020-02-03"
+ }
+ 
+  build().then(() => {
+    modelRuns
+      .createRun(runData)
+      .then(() => {
+        modelRuns.getAllRuns()
+        .then(runs => {
+        t.equal(runs.length, 11, `Number of runs should be 11 and is ${runs.length}`);
+        t.end();          
+        })
       })
       .catch((error) => {
         t.error(error);

@@ -35,14 +35,13 @@ function createTeam(req, res, next) {
   modelTeams
     .createTeam({ name, distance, user })
     .then(() => {
-      res.status(201).send({ message: `team ${name} created` })
+      res.status(201).send({ message: `thanks ${user_id} team ${name} created` })
     })
     .catch(next)
 }
 
 function editTeam(req, res, next) {
   const name = req.params.team
-
   modelTeams
     .editTeam(name, req.body)
     .then(newTeam => {
@@ -58,6 +57,7 @@ function getAllTeams(req, res, next) {
     res.send(teams)
   })
   .catch(next)
+}
 
 function deleteTeam(req, res, next) {
   const team_name = req.params.team
