@@ -16,9 +16,9 @@ function deleteUser(user) {
 
 // }
 
-// function getUserById(id) {
-
-// }
+function getUserById(id) {
+    db.query()
+}
 
 module.exports = {
     createUser,
