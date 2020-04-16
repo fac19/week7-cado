@@ -37,7 +37,9 @@ CREATE DATABASE week7cado_test_db WITH OWNER myuser";
 
 
 ## Database Schema
+![](https://i.imgur.com/wc1uZ0t.png)
 
+```sql=
 users(
     id SERIAL PRIMARY KEY,
     username VARCHAR(255) NOT NULL UNIQUE, 
@@ -65,6 +67,7 @@ users_teams(
     user_id INTEGER REFERENCES users(id),
     team_id INTEGER REFERENCES teams(id)
 );
+```
 
 ## API routes you can access to
 `GET` - `https://week7-cado.herokuapp.com/users/runs/`
@@ -99,10 +102,9 @@ users_teams(
 
 // response
 {
-   "access_token" : ""
+   "access_token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoxMSwiaWF0IjoxNTg3MDU2NzU2LCJleHAiOjE1ODcwNjAzNTZ9._R4R91V0KnIuTbaipRf6PZ7zZceL5EZb7zANZLCoF54"
 }
 ```
-
 
 In response body you should be seeing something similar: 
 
@@ -119,6 +121,45 @@ In response body you should be seeing something similar:
 
 // response
 {
-   "access_token" : ""
+   "access_token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoxMSwiaWF0IjoxNTg3MDU2NzU2LCJleHAiOjE1ODcwNjAzNTZ9._R4R91V0KnIuTbaipRf6PZ7zZceL5EZb7zANZLCoF54"
+}
+```
+
+`POST` - `https://week7-cado.herokuapp.com//create/team/:team/:distance`
+
+> you can create a team with providing two parameters in the url. `:team` is a place holder for the name of your team and `:distance` is a placeholder for goal distance your team wants to have. This url doesn't take a request body.
+
+```json
+// example route
+// https://week7-cado.herokuapp.com/create/team/monkey/5000
+
+
+// response
+{
+   "team_name": "monkey",
+   "goal_distance": "5000",
+   "captain": "2"
+}
+```
+
+`PUT` - `https://week7-cado.herokuapp.com/update/team/:team`
+
+> you can update team's name with providing one parameter in the url. `:team` is a place holder for the name of your team. This url takes request body.
+
+```json
+// example route that update monkey team
+// https://week7-cado.herokuapp.com/update/team/monkey
+
+// request body
+{
+   "team_name": "blue Velvet",
+   "goal_distance": "20"
+}
+
+// response
+{
+   "team_name": "blue Velvet",
+   "goal_distance": "20",
+   "captain": "2"
 }
 ```
