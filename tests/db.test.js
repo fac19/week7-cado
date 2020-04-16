@@ -62,6 +62,63 @@ test("Want to get run by the run_id ", t => {
     });
   });
 
+  test("Want to get the id of the team by the teamName ", t => {
+    const teamName = 'Tigers';
+    build().then(() => {
+      modelRuns
+      .getAllFromTeamName(teamName)
+      .then(results => {
+        const teamId = results.id;
+        const teamCaptain = results.captain;
+        const teamGoal = results.goal_distance;
+        t.equal(teamId, 3, `${teamName} id should be 3 and is ${teamId}` )
+        t.equal(teamCaptain, 1 , `${teamName} captain should be 1 and is ${teamCaptain}` )
+        t.equal(teamGoal, 900 , `${teamName} distance should be 900 and is ${teamGoal}` )
+        t.end();
+        })
+        .catch(error => {
+            t.error(error);
+            t.end();
+      });
+    });
+});
+
+  test("Want to get all of the members of a specific team by the teamName ", t => {
+    const teamId = 2;
+    build().then(() => {
+      modelRuns
+      .getAllUsersFromTeam(2)
+      .then(result => {
+        const firstResult = result[0];
+        const lastResult = result[result.length -1]
+        t.equal(firstResult.user_id, 4, `First user should be 4 and is ${firstResult.user_id}` )
+        t.equal(lastResult.user_id, 9, `First user should be 9 and is ${lastResult.user_id}` )
+        t.end()
+      })
+      .catch(error => {
+        t.error(error);
+        t.end();
+      })
+  });
+});
+
+test("Want to get users from the userId", t => {
+    const userId = 3;
+    build().then(() => {
+      modelUsers
+      .getUserById(userId)
+      .then(result => {
+        t.equal(result.username, 'userC1', `Third user should be "userC1" and is ${result.username}` )
+        t.end()
+      })
+      .catch(error => {
+        t.error(error);
+        t.end();
+      })
+  });
+});
+
+
 
 
 //   test("test name", t => {
