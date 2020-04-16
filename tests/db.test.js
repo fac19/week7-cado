@@ -80,7 +80,7 @@ test("Want to get run between 2 dates ", (t) => {
 test("Want to get the id of the team by the teamName ", (t) => {
   const teamName = "Tigers";
   build().then(() => {
-    modelRuns
+    modelTeams
       .getAllFromTeamName(teamName)
       .then((results) => {
         const teamId = results.id;
@@ -109,7 +109,7 @@ test("Want to get the id of the team by the teamName ", (t) => {
 test("Want to get all of the members of a specific team by the teamName ", (t) => {
   const teamId = 2;
   build().then(() => {
-    modelRuns
+    modelTeams
       .getAllUsersFromTeam(2)
       .then((result) => {
         const firstResult = result[0];
@@ -156,11 +156,11 @@ test("Want to get users from the userId", (t) => {
 test("I want to get all userNames from a teamName", (t) => {
   build()
     .then(() => {
-    modelRuns
+    modelTeams
     .getAllFromTeamName("Tigers") // We are using the team name to get all the data for that team
     .then((result) => {
         const teamId = result.id;
-        modelRuns
+        modelTeams
         .getAllUsersFromTeam(teamId) // We are using the team id to get all of the users in that team
         .then((results) => {
             let usersDataPromiseArray = results.map((users) => {
@@ -185,19 +185,24 @@ test("I want to get all userNames from a teamName", (t) => {
     });
 });
 
-//   test("test name", t => {
-//     build().then(() => {
-//         testModel(input)
-//         .then(result => {
-//             t.equal();
-//             t.end();
-//         })
-//         .catch(error => {
-//             t.error(error);
-//             t.end();
-//         })
-//     });
-//   });
+// test getTools()
+test("Get can all teams", (t) => {
+  build().then(() => {
+    modelTeams
+      .getAllTeams()
+      .then((result) => {
+        const firstResult = result[0];
+        const lastResult = result[result.length - 1];
+        t.equal(firstResult.team_name, 'Monkeys', `First team name should be "Monkeys" and is ${firstResult.team_name}`);
+        t.equal(lastResult.team_name, 'Trees', `Last team name should be "Trees" and is ${lastResult.team_name}`);
+        t.end();
+      })
+      .catch((error) => {
+        t.error(error);
+        t.end();
+      });
+  });
+});
 
 // See if tape is working
 test("Test to see if this runs", (t) => {

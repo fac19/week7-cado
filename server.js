@@ -23,8 +23,8 @@ server.use(logger)
 server.get('/users/runs/', runs.getAllMyRuns)
 server.get('/users/runs/:date1/:date2', runs.getRunsInDates)
 server.get('/users/runs/:runId', runs.getSpecificRun)
-// server.get("/teams", teams.getAllTeams)
-// server.get("/teams/:teamName", teams.getTeamMembersFromTeamName)
+server.get("/teams", teams.getAllTeams)
+server.get('/teams/:teamName', teams.getTeamMembersFromTeamName)
 
 // POST
 server.post('/login', users.logIn)
