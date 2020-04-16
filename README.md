@@ -69,10 +69,12 @@ users_teams(
 );
 ```
 
-## API routes you can access to
-`GET` - `https://week7-cado.herokuapp.com/users/runs/`
+---
 
+## API routes you can access to
 ### GET 
+
+`GET` - `https://week7-cado.herokuapp.com/users/runs/`
 
 > Once signed in, you can request your runs
 ```json
@@ -85,6 +87,8 @@ users_teams(
   "date": "2020-02-03T00:00:00.000Z"
 }
 ```
+
+---
 
 ### POST
 
@@ -106,11 +110,12 @@ users_teams(
 }
 ```
 
-In response body you should be seeing something similar: 
-
-> You can log in with the following request body to our API:
+---
 
 `POST` - `https://week7-cado.herokuapp.com/login`
+> You can log in with the following request body to our API:
+
+
 
 ```json
 // request
@@ -125,6 +130,9 @@ In response body you should be seeing something similar:
 }
 ```
 
+---
+
+
 `POST` - `https://week7-cado.herokuapp.com//create/team/:team/:distance`
 
 > you can create a team with providing two parameters in the url. `:team` is a place holder for the name of your team and `:distance` is a placeholder for goal distance your team wants to have. This url doesn't take a request body.
@@ -136,11 +144,11 @@ In response body you should be seeing something similar:
 
 // response
 {
-   "team_name": "monkey",
-   "goal_distance": "5000",
-   "captain": "2"
+   "message": "monkey team has been created"
 }
 ```
+
+---
 
 `PUT` - `https://week7-cado.herokuapp.com/update/team/:team`
 
@@ -158,8 +166,21 @@ In response body you should be seeing something similar:
 
 // response
 {
-   "team_name": "blue Velvet",
-   "goal_distance": "20",
-   "captain": "2"
+}
+```
+
+---
+
+`DELETE` - `https://week7-cado.herokuapp.com/delete/teams/:team`
+> you can delete team's name with providing one parameter in the url. `:team` is a place holder for the name of your team. This url doesn't take request body.
+
+```json
+// example route that update monkey team
+// https://week7-cado.herokuapp.com/delete/team/monkey
+
+
+// response
+{
+   "message": "monkey team has been deleted"
 }
 ```

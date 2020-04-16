@@ -38,7 +38,12 @@ function editTeam(req, res, next) {
 }
 
 function deleteTeam(req, res, next) {
-
+  const team_name = req.params.team
+  modelTeams.deleteTeam(team_name)
+    .then(() => {
+      res.status(204).send()
+    })
+    .catch(next)
 }
 
 module.exports = {

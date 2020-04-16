@@ -11,4 +11,9 @@ function editTeam(name, newTeam){
   .catch(err => err);
 }
 
-module.exports = { createTeam, editTeam }
+function deleteTeam(team_name) {
+  return db.query("DELETE FROM teams WHERE team_name=($1)", [team_name])
+  .catch(err => err)
+}
+
+module.exports = { createTeam, editTeam, deleteTeam }

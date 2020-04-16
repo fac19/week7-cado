@@ -41,7 +41,7 @@ server.put('/update/team/:team', authorize, teams.editTeam)
 // DELETE
 // server.delete('/delete/runs/:id', authorize, runs.deleteRun)
 // server.delete('/delete/users/:id', authorize, users.deleteUser)
-// server.delete('/delete/teams/:id', authorize, teams.deleteTeam)
+server.delete('/delete/team/:team', authorize, teams.deleteTeam)
 
 
 server.use(handleError)
