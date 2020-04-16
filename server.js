@@ -26,7 +26,6 @@ server.use(logger)
 
 // POST
 server.post("/login", users.logIn)
-server.post("/logout", authorize, users.logOut)
 // server.post("/create/:user", users.createUser)
 // server.post("/create/:team", authorize, teams,createTeam)
 // server.post("/create/:run", authorize, runs.createRun)

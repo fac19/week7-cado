@@ -10,12 +10,14 @@ function verifyUser(req, res, next) {
   const authHeader = req.headers.authorization
   if (authHeader) {
     const token = authHeader.replace("Bearer ", "")
+    console.log("verifyUser -> authHeader", authHeader)    
     try {
-        const tokenData = jwt.verify(token, SECRET)
-        model.getUserById(tokenData.user)
-          .then(user => {
-            req.user = user
-            next()
+      const tokenData = jwt.verify(token, SECRET)
+      model.getUserById(tokenData.user)
+      .then(user => {
+        req.user = user
+        console.log("i am loggedout")
+        next()
           })
           .catch(next) 
     } catch (_) {
