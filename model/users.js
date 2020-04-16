@@ -12,13 +12,13 @@ function deleteUser(user) {
 
 }
 
-// function getUser(email) {
+function getUser(email) {
 
-// }
+}
 
-// function getUserById(id) {
+function getUserById(id) {
 
-// }
+}
 
 module.exports = {
     createUser,

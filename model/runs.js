@@ -1,8 +1,9 @@
 const db = require('../database/connection')
 
-function getAllMyRuns() {
-  
+function getAllMyRuns(id) {
+  return db.query("SELECT * FROM runs WHERE id = ($1);",[id]).then(result => result.rows);
 }
+
 function getRunsInDates() {
 
 }
