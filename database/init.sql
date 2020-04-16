@@ -43,10 +43,10 @@ INSERT INTO users (username, email, password) VALUES
 ('userJ4','J@email.com','password');
 
 INSERT INTO teams (team_name, goal_distance, captain) VALUES
-('team1', 700, 1),
-('team2', 800, 1),
-('team3', 900, 1),
-('team4', 1000, 3);
+('Monkeys', 700, 1),
+('Jimmyes', 800, 1),
+('Tigers', 900, 1),
+('Trees', 1000, 3);
 
 
 INSERT INTO runs (user_id, distance, start_time, end_time, date) VALUES
