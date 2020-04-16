@@ -1,31 +1,14 @@
-const jwt = require("jsonwebtoken");
-const dotenv = require("dotenv");
-const model = require("../model/runs");
+const db = require("../database/connection");
 
-dotenv.config();
-const SECRET = process.env.JWT_SECRET;
-
-
-function getAllTeams(req, res, next) {
-
-}
-function getTeam(req, res, next) {
-
-}
-function createTeam(req, res, next) {
-
-}
-function editTeam(req, res, next) {
-
-}
-function deleteTeam(req, res, next) {
-
+function createTeam(team){
+  return db.query("INSERT INTO teams (team_name, goal_distance, captain) VALUES ($1, $2, $3)", [team.name, team.distance, team.user.id])
+  .catch(err => err);
 }
 
-module.exports = {
-  getAllTeams,
-  getTeam,
-  createTeam,
-  editTeam,
-  deleteTeam
+function editTeam(name, newTeam){
+  console.log(name, newTeam)
+  return db.query("UPDATE teams SET team_name = ($1), goal_distance = ($2) WHERE team_name = ($3)", [newTeam.team_name, newTeam.goal_distance, name])
+  .catch(err => err);
 }
+
+module.exports = { createTeam, editTeam }
