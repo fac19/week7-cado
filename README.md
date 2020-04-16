@@ -1,9 +1,11 @@
 
-# CODA
+# CODA :woman-running: 
 Week 7
 
 ## Project description
-We Created and API that does this and that
+We Created and API where you can store and access data regarding your runs and running teams you are part of. Please read the API routes section for info on how to access the data.
+
+To access most of the routes you will need to create a user in the POST section to get the jwt token.
 
 ## Set up instructions
 
@@ -71,13 +73,48 @@ users_teams(
 
 ---
 
-## API routes you can access to
+## API routes you can access
 ### GET 
 
 `GET` - `https://week7-cado.herokuapp.com/users/runs/`
 
-> Once signed in, you can request your runs
-```json
+> Once signed in, you can request your runs. [Example URL](https://week7-cado.herokuapp.com/users/runs/)
+```json=
+// Response
+{
+  "id": 3,
+  "user_id": 1,
+  "distance": "700",
+  "start_time": "00:00:00",
+  "end_time": "00:30:00",
+  "date": "2020-02-03T00:00:00.000Z"
+}
+```
+
+---
+
+`GET` - `https://week7-cado.herokuapp.com/users/runs/:date1/:date2`
+
+> Once signed in, you can request your runs between certain dates. [Example URL](https://week7-cado.herokuapp.com/users/runs/2020-01-01/2020-04-15)
+```json 
+// Response
+{
+  "id": 3,
+  "user_id": 1,
+  "distance": "700",
+  "start_time": "00:00:00",
+  "end_time": "00:30:00",
+  "date": "2020-02-03T00:00:00.000Z"
+}
+```
+
+---
+
+`GET` - `https://week7-cado.herokuapp.com/users/runs/:runId`
+
+> You can request a specific run by its id. [Example URL](https://week7-cado.herokuapp.com/users/runs/2)
+```json 
+// Response
 {
   "id": 3,
   "user_id": 1,
