@@ -11,18 +11,33 @@ function getAllMyRuns(req, res, next){
   modelRuns
   .getAllMyRuns(userId)
   .then(runs => {
-    console.log("getAllMyRuns -> runs", runs)
+    // console.log("getAllMyRuns -> runs", runs)
     res.send(runs);
   })
   .catch(next);
 }
 
 function getRunsInDates(req, res, next) {
-
+  const userId = 1
+  const date1 = req.params.date1
+  const date2 = req.params.date2
+  modelRuns
+  .getRunsInDates(userId, date1,date2)
+  .then(runs => {
+    res.send(runs);
+  })
+  .catch(next);
 }
 
 function getSpecificRun(req, res, next) {
-
+  const runId = req.params.runId 
+  modelRuns
+  .getSpecificRun(runId)
+  .then(run => {
+  console.log("getSpecificRun -> run", run)
+  res.send(run)  
+  })
+  .catch(next);
 }
 
 function createRun(req, res, next) {

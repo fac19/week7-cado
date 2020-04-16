@@ -24,6 +24,44 @@ test("Can get all user runs", t => {
     });
 });
 
+test("Want to get run by the run_id ", t => {
+    build().then(() => {
+        modelRuns
+        .getSpecificRun(8)
+        .then(result => {
+            const lengthArr = Object.keys(result).length;
+            const distance = result.distance;
+            t.equal(lengthArr, 6, `length of object should be 6 and is ${lengthArr}`)
+            t.equal(distance, '1200', `Distance should equal "1200" and is ${distance}`)
+            t.end()
+        })
+        .catch(error => {
+            t.error(error);
+            t.end();
+        })
+    });
+  });
+
+  test("Want to get run between 2 dates ", t => {
+      const userID = 1;
+    build().then(() => {
+        modelRuns
+        .getRunsInDates(userID, '2020-01-01','2020-03-08')
+        .then(result => {
+            const firstRes = result[0]
+            const lastRes = result[result.length -1]
+            t.equal(firstRes.distance, '500', `distance of the first run for user ${userID} should be 500`)
+            t.equal(lastRes.distance, '800', `distance of the last run for user ${userID} should be 700`)
+
+            t.end()
+        })
+        .catch(error => {
+            t.error(error);
+            t.end();
+        })
+    });
+  });
+
 
 
 //   test("test name", t => {

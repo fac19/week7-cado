@@ -21,8 +21,8 @@ server.use(logger);
 // Request handling
 // GET
 server.get("/users/runs/", runs.getAllMyRuns)
-// server.get("/users/runs/:date1/:date2", runs.getRunsInDates)
-// server.get("/users/runs/:date", runs.getSpecificRun)
+server.get("/users/runs/:date1/:date2", runs.getRunsInDates)
+server.get("/users/runs/:runId", runs.getSpecificRun)
 // server.get("/teams", teams.getAllTeams)
 // server.get("/teams/:teamid", teams.getTeam)
 

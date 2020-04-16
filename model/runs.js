@@ -6,11 +6,15 @@ function getAllMyRuns(id) {
   .catch(error => console.error(error));
 }
 
-function getRunsInDates() {
-
+function getRunsInDates(userID, date1, date2) {
+  return db.query("SELECT * FROM runs WHERE user_id=($1) AND date BETWEEN ($2) AND ($3)", [userID, date1,date2])
+  .then(results => results.rows)
+  .catch(error => console.error(error));
 }
-function getSpecificRun() {
-
+function getSpecificRun(runId) {
+  return db.query("SELECT * FROM runs WHERE id = ($1);",[runId])
+  .then(result => result.rows[0])
+  .catch(error => console.error(error));
 }
 function createRun() {
 
