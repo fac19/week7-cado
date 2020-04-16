@@ -36,3 +36,6 @@ $ psql -c "CREATE DATABASE week7cado_test_db WITH OWNER myuser"
 
 
 ## Database Schema
+
+"/login", users.logIn)
+"/create/user", users.createUser)
