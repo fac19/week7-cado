@@ -12,7 +12,12 @@ function verifyUser(req, res, next) {
     const token = authHeader.replace("Bearer ", "")
     try {
         const tokenData = jwt.verify(token, SECRET)
-        
+        model.getUserById(tokenData.user)
+          .then(user => {
+            req.user = user
+            next()
+          })
+          .catch(next) 
     } catch (_) {
       const error = new Error("Unauthorized")
       error.status = 401
@@ -27,5 +32,5 @@ function verifyUser(req, res, next) {
 
 }
 
-
+module.exports = verifyUser
 
