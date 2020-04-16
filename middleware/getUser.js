@@ -1,0 +1,1 @@
+// get user id from token if it exists, add to req object
