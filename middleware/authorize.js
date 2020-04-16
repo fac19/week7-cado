@@ -9,14 +9,12 @@ const SECRET = process.env.JWT_SECRET
 function verifyUser(req, res, next) {
   const authHeader = req.headers.authorization
   if (authHeader) {
-    const token = authHeader.replace("Bearer ", "")
-    console.log("verifyUser -> authHeader", authHeader)    
+    const token = authHeader.replace("Bearer ", "")   
     try {
       const tokenData = jwt.verify(token, SECRET)
       model.getUserById(tokenData.user)
       .then(user => {
         req.user = user
-        console.log("i am loggedout")
         next()
           })
           .catch(next) 
