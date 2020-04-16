@@ -40,10 +40,17 @@ function getAllTeams() {
     .catch(error => console.error(error))
 }
 
+function deleteTeam(team_name) {
+  return db.query("DELETE FROM teams WHERE team_name=($1)", [team_name])
+  .catch(err => err)
+}
+
 module.exports = {
   createTeam,
   editTeam,
   getAllFromTeamName,
   getAllUsersFromTeam,
-  getAllTeams
+  getAllTeams,
+  deleteTeam
 }
+

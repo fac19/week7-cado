@@ -51,12 +51,21 @@ function editTeam(req, res, next) {
     .catch(next)
 }
 
+
 function getAllTeams(req, res, next) {
   modelTeams.getAllTeams()
   .then(teams => {
     res.send(teams)
   })
   .catch(next)
+
+function deleteTeam(req, res, next) {
+  const team_name = req.params.team
+  modelTeams.deleteTeam(team_name)
+    .then(() => {
+      res.status(204).send()
+    })
+    .catch(next)
 }
 
 function deleteTeam(req, res, next) {}
