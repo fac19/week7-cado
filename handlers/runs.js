@@ -18,7 +18,7 @@ function getAllMyRuns(req, res, next){
 }
 
 function getRunsInDates(req, res, next) {
-  const userId = 1
+  const userId =  1;
   const date1 = req.params.date1
   const date2 = req.params.date2
   modelRuns
@@ -34,10 +34,32 @@ function getSpecificRun(req, res, next) {
   modelRuns
   .getSpecificRun(runId)
   .then(run => {
-  console.log("getSpecificRun -> run", run)
   res.send(run)  
   })
   .catch(next);
+}
+
+function getTeamMembersFromTeamName(req, res, next){
+  const teamName = req.params.teamName
+  modelRuns
+    .getAllFromTeamName(teamName)
+    .then((result) => {
+      const teamId = result.id;
+      modelRuns
+        .getAllUsersFromTeam(teamId)
+        .then((results) => {
+          let usersDataPromiseArray = results.map((users) => {
+            return modelUsers.getUserById(users.user_id).then((result) => {
+              return result;
+            });
+          });
+          Promise.all(usersDataPromiseArray).then((usersDataArray) => {
+            res.send(userDataArray)
+          });
+        })
+
+    .catch(next)
+    });
 }
 
 function createRun(req, res, next) {
@@ -56,6 +78,7 @@ module.exports = {
   getAllMyRuns, 
   getRunsInDates, 
   getSpecificRun, 
+  getTeamMembersFromTeamName,
   createRun, 
   editRun, 
   deleteRun 

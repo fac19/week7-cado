@@ -29,8 +29,6 @@ function getAllUsersFromTeam(teamId) {
   .catch(error => console.error(error));
 }
 
-
-
 function createRun() {
 
 }
