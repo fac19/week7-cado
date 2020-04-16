@@ -21,7 +21,7 @@ function logIn (req, res, next) {
     const email = req.body.email
     const password = req.body.password
     model.getUser(email)
-        .then(user => {
+    .then(user => {
             if(password != user.password) {
                 const error = new Error("Unauthorized")
                 error.status = 401
@@ -45,5 +45,6 @@ module.exports = {
     createUser,
     editUser,
     deleteUser,
-    logIn
+    logIn,
+    logOut
 }
