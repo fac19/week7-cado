@@ -29,13 +29,13 @@ server.get("/users/runs/", runs.getAllMyRuns)
 // POST
 server.post("/login", users.logIn)
 server.post("/create/user", users.createUser)
-// server.post("/create/team/:team", authorize, teams,createTeam)
+server.post("/create/team/:team/:distance", authorize, teams.createTeam)
 // server.post("/create/user/:run", authorize, runs.createRun)
 
 // PUT
 // server.put('/update/runs/:id', authorize, runs.editRun)
 // server.put('/update/users/:id', authorize, users.editUser)
-// server.put('/update/teams/:id', authorize, teams.editTeam)
+server.put('/update/team/:team', authorize, teams.editTeam)
 
 
 // DELETE
