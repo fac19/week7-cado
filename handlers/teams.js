@@ -58,6 +58,7 @@ function getAllTeams(req, res, next) {
     res.send(teams)
   })
   .catch(next)
+}
 
 function deleteTeam(req, res, next) {
   const team_name = req.params.team
