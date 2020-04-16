@@ -1,6 +1,6 @@
 BEGIN; 
 
-DROP TABLE IF EXISTS users, teams, runs, users_teams; 
+DROP TABLE IF EXISTS users, teams, runs, users_teams CASCADE; 
 
 CREATE TABLE users(
     id SERIAL PRIMARY KEY,
