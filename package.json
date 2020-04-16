@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "tape 'tests/db.test.js' | tap-spec",
+    "test": "tape PGDATABASE=week7cado_test_db PGUSER=myuser PGPASSWORD=mypassword | tap-spec",
     "dev": "nodemon server.js"
   },
   "repository": {
