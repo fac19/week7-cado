@@ -20,7 +20,10 @@ function getTeamMembersFromTeamName(req, res, next) {
         })
         Promise.all(usersDataPromiseArray).then(usersDataArray => {
           let nameArray = usersDataArray.map(user=> {
-            return {"username": user.username}}) 
+            return {
+              "id" : user.id, 
+              "username": user.username
+            }}) 
           res.send(nameArray)
         })
       })
