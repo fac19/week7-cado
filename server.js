@@ -29,18 +29,18 @@ server.get('/teams/:teamName', teams.getTeamMembersFromTeamName)
 // POST
 server.post('/create/user', users.createUser)
 server.post('/login', users.logIn)
-server.post('/create/team/:team/:distance', authorize, teams.createTeam)
-server.post("/create/run", authorize, runs.createRun)
+server.post('/team/:team/:distance', authorize, teams.createTeam)
+server.post("/run", authorize, runs.createRun)
 
 // PUT
 // server.put('/update/runs/:id', authorize, runs.editRun)
 // server.put('/update/users/:id', authorize, users.editUser)
-server.put('/update/team/:team', authorize, teams.editTeam)
+server.put('/team/:team', authorize, teams.editTeam)
 
 // DELETE
 // server.delete('/delete/runs/:id', authorize, runs.deleteRun)
 // server.delete('/delete/users/:id', authorize, users.deleteUser)
-server.delete('/delete/team/:team', authorize, teams.deleteTeam)
+server.delete('/team/:team', authorize, teams.deleteTeam)
 
 server.use(handleError)
 

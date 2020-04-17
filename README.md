@@ -127,7 +127,7 @@ CREATE DATABASE week7cado_test_db WITH OWNER myuser;
 
 ### POST
 
-`POST` - `https://week7-cado.herokuapp.com/create/user`
+`POST` - `https://week7-cado.herokuapp.com/user`
 
 > You can create your user with the following request body to our API and get an access token in response:
 
@@ -168,13 +168,13 @@ CREATE DATABASE week7cado_test_db WITH OWNER myuser;
 ---
 
 
-`POST` - `https://week7-cado.herokuapp.com//create/team/:team/:distance`
+`POST` - `https://week7-cado.herokuapp.com/team/:team/:distance`
 
 > you can create a team with providing two parameters in the url. `:team` is a place holder for the name of your team and `:distance` is a placeholder for goal distance your team wants to have. This url doesn't take a request body.
 
 ```json
 // example route
-// https://week7-cado.herokuapp.com/create/team/monkey/5000
+// https://week7-cado.herokuapp.com/team/monkey/5000
 
 
 // response
@@ -185,7 +185,7 @@ CREATE DATABASE week7cado_test_db WITH OWNER myuser;
 
 ---
 
-`POST` - `https://week7-cado.herokuapp.com/create/run`
+`POST` - `https://week7-cado.herokuapp.com/run`
 
 > you can create a run by providing the following request body to our API:
 
@@ -209,13 +209,13 @@ CREATE DATABASE week7cado_test_db WITH OWNER myuser;
 ---
 ### PUT / UPDATE
 
-`PUT` - `https://week7-cado.herokuapp.com/update/team/:team`
+`PUT` - `https://week7-cado.herokuapp.com/team/:team`
 
 > you can update a team by providing its current name in the url. `:team` is a place holder for the name of your team. This url takes request body.
 
 ```json
 // example route that update monkey team
-// https://week7-cado.herokuapp.com/update/team/monkey
+// https://week7-cado.herokuapp.com/team/monkey
 
 // request body
 {
@@ -232,12 +232,12 @@ CREATE DATABASE week7cado_test_db WITH OWNER myuser;
 ---
 ### DELETE
 
-`DELETE` - `https://week7-cado.herokuapp.com/delete/teams/:team`
+`DELETE` - `https://week7-cado.herokuapp.com/teams/:team`
 > you can delete teamby including it in the url. `:team` is a place holder for the name of your team. This url doesn't take request body.
 
 ```json
 // example route that update monkey team
-// https://week7-cado.herokuapp.com/delete/team/monkey
+// https://week7-cado.herokuapp.com/team/monkey
 
 
 // response
