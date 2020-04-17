@@ -38,40 +38,6 @@ CREATE DATABASE week7cado_test_db WITH OWNER myuser";
    * `GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO your-username;`
 
 
-## Database Schema
-![](https://i.imgur.com/wc1uZ0t.png)
-
-```sql=
-users(
-    id SERIAL PRIMARY KEY,
-    username VARCHAR(255) NOT NULL UNIQUE, 
-    email VARCHAR(255) NOT NULL UNIQUE, 
-    password VARCHAR(255) NOT NULL
-); 
-
-teams(
-    id SERIAL PRIMARY KEY,
-    team_name VARCHAR(255) NOT NULL UNIQUE, 
-    goal_distance INTEGER,
-    captain INTEGER REFERENCES users(id)
-); 
-
-runs(
-    id SERIAL PRIMARY KEY,
-    user_id INTEGER REFERENCES users(id), 
-    distance DECIMAL NOT NULL, 
-    start_time TIME NOT NULL, 
-    end_time TIME NOT NULL,
-    date DATE NOT NULL
-);
-
-users_teams(
-    user_id INTEGER REFERENCES users(id),
-    team_id INTEGER REFERENCES teams(id)
-);
-```
-
----
 
 ## API routes you can access
 ### GET 
@@ -79,7 +45,7 @@ users_teams(
 `GET` - `https://week7-cado.herokuapp.com/users/runs/`
 
 > Once signed in, you can request your runs. [Example URL](https://week7-cado.herokuapp.com/users/runs/)
-```json=
+```json
 // Response
 {
   "id": 3,
@@ -124,7 +90,38 @@ users_teams(
   "date": "2020-02-03T00:00:00.000Z"
 }
 ```
+---
 
+`GET` - `https://week7-cado.herokuapp.com/users/teams`
+
+> You can request all of the teams [Example URL](https://week7-cado.herokuapp.com/teams)
+
+```json 
+// Response
+{
+   "id": 1,
+   "team_name": "team1",
+   "goal_distance": 700,
+   "captain": 1
+}
+```
+---
+
+`GET` - `https://week7-cado.herokuapp.com/users/teams/:team`
+
+> You can request all of the members of a team by giving the team name [Example URL](https://week7-cado.herokuapp.com/teams/team1)
+
+```json 
+// Response
+{
+    "id": 1,
+    "username": "userA1"
+},
+{
+    "id": 2,
+    "username": "userB1"
+}...
+```
 ---
 
 ### POST
@@ -187,9 +184,33 @@ users_teams(
 
 ---
 
+`POST` - `https://week7-cado.herokuapp.com/create/run`
+
+> you can create a run by providing the following request body to our API:
+
+
+```json 
+//request body
+{
+    "user_id": 1,
+    "distance" : 1700,
+    "start_time": "00:00:00",
+    "end_time" : "00:00:40",
+    "date": "2020-02-03"
+ }
+ 
+ //response
+ {
+ "message": "Run on 2020-02-03 @ 00:00:00 created"
+ }
+```
+
+---
+### PUT / UPDATE
+
 `PUT` - `https://week7-cado.herokuapp.com/update/team/:team`
 
-> you can update team's name with providing one parameter in the url. `:team` is a place holder for the name of your team. This url takes request body.
+> you can update a team by providing its current name in the url. `:team` is a place holder for the name of your team. This url takes request body.
 
 ```json
 // example route that update monkey team
@@ -203,13 +224,15 @@ users_teams(
 
 // response
 {
+  "message": "monkey updated"
 }
 ```
 
 ---
+### DELETE
 
 `DELETE` - `https://week7-cado.herokuapp.com/delete/teams/:team`
-> you can delete team's name with providing one parameter in the url. `:team` is a place holder for the name of your team. This url doesn't take request body.
+> you can delete teamby including it in the url. `:team` is a place holder for the name of your team. This url doesn't take request body.
 
 ```json
 // example route that update monkey team
@@ -221,3 +244,37 @@ users_teams(
    "message": "monkey team has been deleted"
 }
 ```
+
+## Database Schema
+![](https://i.imgur.com/wc1uZ0t.png)
+
+```sql=
+users(
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(255) NOT NULL UNIQUE, 
+    email VARCHAR(255) NOT NULL UNIQUE, 
+    password VARCHAR(255) NOT NULL
+); 
+
+teams(
+    id SERIAL PRIMARY KEY,
+    team_name VARCHAR(255) NOT NULL UNIQUE, 
+    goal_distance INTEGER,
+    captain INTEGER REFERENCES users(id)
+); 
+
+runs(
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users(id), 
+    distance DECIMAL NOT NULL, 
+    start_time TIME NOT NULL, 
+    end_time TIME NOT NULL,
+    date DATE NOT NULL
+);
+
+users_teams(
+    user_id INTEGER REFERENCES users(id),
+    team_id INTEGER REFERENCES teams(id)
+);
+```
+

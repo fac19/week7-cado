@@ -17,6 +17,7 @@ function getAllMyRuns(req, res, next) {
     const data = jwt.verify(token, SECRET);
     modelRuns
     .getAllMyRuns(data.user)
+
     .then(runs => {
       res.send(runs)
     })
@@ -30,6 +31,7 @@ function getAllMyRuns(req, res, next) {
 
 function getRunsInDates(req, res, next) {
   const authHeader = req.headers.authorization;
+
   const date1 = req.params.date1
   const date2 = req.params.date2
 
