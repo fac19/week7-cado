@@ -19,7 +19,8 @@ function getTeamMembersFromTeamName(req, res, next) {
           })
         })
         Promise.all(usersDataPromiseArray).then(usersDataArray => {
-          res.send(usersDataArray)
+          let nameArray = usersDataArray.map(user=> user.username) 
+          res.send(nameArray)
         })
       })
       .catch(next)
