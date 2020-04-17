@@ -79,7 +79,7 @@ users_teams(
 `GET` - `https://week7-cado.herokuapp.com/users/runs/`
 
 > Once signed in, you can request your runs. [Example URL](https://week7-cado.herokuapp.com/users/runs/)
-```json=
+```json
 // Response
 {
   "id": 3,
@@ -124,7 +124,38 @@ users_teams(
   "date": "2020-02-03T00:00:00.000Z"
 }
 ```
+---
 
+`GET` - `https://week7-cado.herokuapp.com/users/teams`
+
+> You can request all of the teams [Example URL](https://week7-cado.herokuapp.com/teams)
+
+```json 
+// Response
+{
+   "id": 1,
+   "team_name": "team1",
+   "goal_distance": 700,
+   "captain": 1
+}
+```
+---
+
+`GET` - `https://week7-cado.herokuapp.com/users/teams/:team`
+
+> You can request all of the members of a team by giving the team name [Example URL](https://week7-cado.herokuapp.com/teams/team1)
+
+```json 
+// Response
+{
+    id: 1,
+    username: "userA1"
+},
+{
+    id: 2,
+    username: "userB1"
+}...
+```
 ---
 
 ### POST
@@ -185,7 +216,29 @@ users_teams(
 }
 ```
 
+`POST` - `https://week7-cado.herokuapp.com//create/run`
+
+> you can create a run by providing the following request body to our API:
+
+
+```json 
+//request body
+{
+    "user_id": 1,
+    "distance" : 1700,
+    "start_time": "00:00:00",
+    "end_time" : "00:00:40",
+    "date": "2020-02-03"
+ }
+ 
+ //response
+ {
+ "message": "Run on 2020-02-03 @ 00:00:00 created"
+ }
+```
+
 ---
+### PUT / UPDATE
 
 `PUT` - `https://week7-cado.herokuapp.com/update/team/:team`
 
@@ -207,6 +260,7 @@ users_teams(
 ```
 
 ---
+### DELETE
 
 `DELETE` - `https://week7-cado.herokuapp.com/delete/teams/:team`
 > you can delete team's name with providing one parameter in the url. `:team` is a place holder for the name of your team. This url doesn't take request body.
