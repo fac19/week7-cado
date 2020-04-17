@@ -20,14 +20,14 @@ server.use(logger)
 
 // Request handling
 // GET
-server.get('/users/runs/', runs.getAllMyRuns)
-server.get('/users/runs/:date1/:date2', runs.getRunsInDates)
+server.get('/users/runs/', authorize, runs.getAllMyRuns)
+server.get('/users/runs/:date1/:date2', authorize, runs.getRunsInDates)
 server.get('/users/runs/:runId', runs.getSpecificRun)
 server.get("/teams", teams.getAllTeams)
 server.get('/teams/:teamName', teams.getTeamMembersFromTeamName)
 
 // POST
-server.post('/create/user', users.createUser)
+server.post('/user', users.createUser)
 server.post('/login', users.logIn)
 server.post('/team/:team/:distance', authorize, teams.createTeam)
 server.post("/run", authorize, runs.createRun)

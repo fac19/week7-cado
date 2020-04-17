@@ -9,7 +9,7 @@ function getAllRuns() {
 
 function getAllMyRuns(id) {
   return db
-    .query('SELECT * FROM runs WHERE id = ($1)', [id])
+    .query('SELECT * FROM runs WHERE user_id = ($1)', [id])
     .then(result => result.rows)
     .catch(error => console.error(error))
 }
@@ -30,12 +30,13 @@ function getSpecificRun(runId) {
     .catch(error => console.error(error))
 }
 
-function createRun(runData) {
-  console.log(runData)
+function createRun(user, runData) {
+  console.log("createRun -> runData", runData)
+  console.log("createRun -> user", user)
   return db
     .query(
       'INSERT INTO runs (user_id, distance, start_time, end_time, date) VALUES ($1, $2, $3, $4, $5)', // @James Error was typo! 'INTO runs' was 'INTO run'
-      [runData.user_id, runData.distance, runData.start_time, runData.end_time, runData.date],
+      [user.id, runData.distance, runData.start_time, runData.end_time, runData.date],
     )
     .catch(err => err)
 }
