@@ -44,7 +44,7 @@ CREATE DATABASE week7cado_test_db WITH OWNER myuser";
 
 `GET` - `https://week7-cado.herokuapp.com/users/runs/`
 
-> Once signed in, you can request your runs. [Example URL](https://week7-cado.herokuapp.com/users/runs/)
+> Once signed in, you can request your runs. [Example URL](https://week7-cado.herokuapp.com/users/runs/) NOTE: This may only work on POSTMAN
 ```json
 // Response
 {
@@ -61,7 +61,7 @@ CREATE DATABASE week7cado_test_db WITH OWNER myuser";
 
 `GET` - `https://week7-cado.herokuapp.com/users/runs/:date1/:date2`
 
-> Once signed in, you can request your runs between certain dates. [Example URL](https://week7-cado.herokuapp.com/users/runs/2020-01-01/2020-04-15)
+> Once signed in, you can request your runs between certain dates. [Example URL](https://week7-cado.herokuapp.com/users/runs/2020-01-01/2020-04-15) NOTE: This may only work on POSTMAN
 ```json 
 // Response
 {
