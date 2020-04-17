@@ -1,5 +1,5 @@
 
-# CODA 
+# Running With Friends
 Week 7
 
 ## Project description
