@@ -48,7 +48,15 @@ function createRun(req, res, next) {
     })
 }
 
-function editRun(req, res, next) {}
+function editRun(req, res, next) {
+  const runId = req.params.id
+  modelRuns
+  .editRun(runId, req.body)
+  .then(() => {
+    res.status(200).send({ message: `run ${runId} updated` })
+  })
+  .catch(next)
+}
 
 function deleteRun(req, res, next) {}
 

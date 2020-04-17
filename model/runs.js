@@ -31,8 +31,6 @@ function getSpecificRun(runId) {
 }
 
 function createRun(user, runData) {
-  console.log("createRun -> runData", runData)
-  console.log("createRun -> user", user)
   return db
     .query(
       'INSERT INTO runs (user_id, distance, start_time, end_time, date) VALUES ($1, $2, $3, $4, $5)', // @James Error was typo! 'INTO runs' was 'INTO run'
@@ -41,7 +39,14 @@ function createRun(user, runData) {
     .catch(err => err)
 }
 
-function editRun() {}
+function editRun(idRun, runData) {
+  return db
+    .query(
+      'UPDATE runs SET distance = ($1), start_time = ($2), end_time = ($3), date = ($4) WHERE id = ($5)',
+      [runData.distance, runData.start_time, runData.end_time, runData.date, idRun],
+    )
+    .catch(err => err)
+}
 function deleteRun() {}
 
 module.exports = {
