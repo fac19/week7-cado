@@ -11,7 +11,7 @@ const handleError = require('./middleware/error')
 const authorize = require('./middleware/authorize')
 const logger = require('./middleware/logger')
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3000;
 
 const server = express()
 server.use(express.json())
@@ -30,7 +30,7 @@ server.get('/teams/:teamName', teams.getTeamMembersFromTeamName)
 server.post('/login', users.logIn)
 server.post('/create/user', users.createUser)
 server.post('/create/team/:team/:distance', authorize, teams.createTeam)
-// server.post("/create/user/:run", authorize, runs.createRun)
+server.post("/create/run", authorize, runs.createRun)
 
 // PUT
 // server.put('/update/runs/:id', authorize, runs.editRun)

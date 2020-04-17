@@ -10,7 +10,6 @@ function getAllMyRuns(req, res, next) {
   modelRuns
     .getAllMyRuns(userId)
     .then(runs => {
-      // console.log("getAllMyRuns -> runs", runs)
       res.send(runs)
     })
     .catch(next)
@@ -38,7 +37,13 @@ function getSpecificRun(req, res, next) {
     .catch(next)
 }
 
-function createRun(req, res, next) {}
+function createRun(req, res, next) {
+  const runData = req.body;
+    modelRuns.createRun(runData)
+    .then(() =>{
+      res.status(201).send({ message: `Run on ${runData.date} @ ${runData.start_time} created` })
+    })
+}
 
 function editRun(req, res, next) {}
 
