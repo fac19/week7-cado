@@ -10,7 +10,6 @@ function createTeam(team) {
 }
 
 function editTeam(name, newTeam) {
-  console.log(name, newTeam)
   return db
     .query(
       'UPDATE teams SET team_name = ($1), goal_distance = ($2) WHERE team_name = ($3)',

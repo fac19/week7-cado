@@ -33,12 +33,12 @@ server.post('/team/:team/:distance', authorize, teams.createTeam)
 server.post("/run", authorize, runs.createRun)
 
 // PUT
-// server.put('/update/runs/:id', authorize, runs.editRun)
+server.put('/runs/:id', authorize, runs.editRun)
 // server.put('/update/users/:id', authorize, users.editUser)
 server.put('/team/:team', authorize, teams.editTeam)
 
 // DELETE
-// server.delete('/delete/runs/:id', authorize, runs.deleteRun)
+server.delete('runs/:id', authorize, runs.deleteRun)
 // server.delete('/delete/users/:id', authorize, users.deleteUser)
 server.delete('/team/:team', authorize, teams.deleteTeam)
 

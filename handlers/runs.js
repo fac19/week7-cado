@@ -1,9 +1,4 @@
-const jwt = require('jsonwebtoken')
-const dotenv = require('dotenv')
 const modelRuns = require('../model/runs')
-
-dotenv.config()
-const SECRET = process.env.JWT_SECRET
 
 function getAllMyRuns(req, res, next) {
   const user = req.user 
@@ -48,9 +43,24 @@ function createRun(req, res, next) {
     })
 }
 
-function editRun(req, res, next) {}
+function editRun(req, res, next) {
+  const runId = req.params.id
+  modelRuns
+  .editRun(runId, req.body)
+  .then(() => {
+    res.status(200).send({ message: `run ${runId} updated` })
+  })
+  .catch(next)
+}
 
-function deleteRun(req, res, next) {}
+function deleteRun(req, res, next) {
+  const runId = req.params.id
+  modelRuns.deleteRun(runId)
+    .then(() => {
+      res.status(204).send()
+    })
+    .catch(next)
+}
 
 module.exports = {
   getAllMyRuns,
