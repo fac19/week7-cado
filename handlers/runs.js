@@ -6,54 +6,27 @@ dotenv.config()
 const SECRET = process.env.JWT_SECRET
 
 function getAllMyRuns(req, res, next) {
-  const authHeader = req.headers.authorization;
-  if (!authHeader) {
-    const error = new Error("Authorization header required");
-    error.status = 400;
-    next(error);
-  }
-  const token = authHeader.replace("Bearer ", "");
-  try {
-    const data = jwt.verify(token, SECRET);
+  const user = req.user 
+  console.log("getAllMyRuns -> user", user)
     modelRuns
-    .getAllMyRuns(data.user)
-
+    .getAllMyRuns(user.id)
     .then(runs => {
       res.send(runs)
     })
     .catch(next)
-  } catch (_error) {
-    const error = new Error("Invalid token");
-    error.status = 401;
-    next(error);
-  }
 }
 
 function getRunsInDates(req, res, next) {
-  const authHeader = req.headers.authorization;
-
   const date1 = req.params.date1
   const date2 = req.params.date2
+  const user = req.user
 
-  if (!authHeader) {
-    const error = new Error("Authorization header required");
-    error.status = 400;
-    next(error);
-  }
-  const token = authHeader.replace("Bearer ", "");
-  try {
-    const data = jwt.verify(token, SECRET);
-     modelRuns
-    .getRunsInDates(data.user, date1, date2)
-    .then(runs => {
-      res.send(runs)
-    })
-    .catch(next)
-  } catch (_error) {
-    const error = new Error("Invalid token");
-    error.status = 401;
-    next(error);
-  }
+  modelRuns
+  .getRunsInDates(user.id, date1, date2)
+  .then(runs => {
+    res.send(runs)
+  })
+  .catch(next)
 }
 
 function getSpecificRun(req, res, next) {
@@ -68,7 +41,8 @@ function getSpecificRun(req, res, next) {
 
 function createRun(req, res, next) {
   const runData = req.body;
-    modelRuns.createRun(runData)
+  const user = req.user;
+    modelRuns.createRun(user, runData)
     .then(() =>{
       res.status(201).send({ message: `Run on ${runData.date} @ ${runData.start_time} created` })
     })
