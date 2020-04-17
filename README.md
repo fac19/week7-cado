@@ -26,10 +26,10 @@ PGPASSWORD=mypassword
 1. Run `psql` to enter Postgres CLI
 
 ```
-CREATE USER myuser WITH PASSWORD 'mypassword';
-ALTER USER myuser WITH SUPERUSER";
-CREATE DATABASE week7cado_db WITH OWNER myuser";
-CREATE DATABASE week7cado_test_db WITH OWNER myuser";
+CREATE USER myuser WITH PASSWORD mypassword;
+ALTER USER myuser WITH SUPERUSER;
+CREATE DATABASE week7cado_db WITH OWNER myuser;
+CREATE DATABASE week7cado_test_db WITH OWNER myuser;
 ```
 
 2. Connect to database `# \c week7cado_db`
