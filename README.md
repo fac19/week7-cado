@@ -148,12 +148,12 @@ users_teams(
 ```json 
 // Response
 {
-    id: 1,
-    username: "userA1"
+    "id": 1,
+    "username": "userA1"
 },
 {
-    id: 2,
-    username: "userB1"
+    "id": 2,
+    "username": "userB1"
 }...
 ```
 ---
