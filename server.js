@@ -38,7 +38,7 @@ server.put('/runs/:id', authorize, runs.editRun)
 server.put('/team/:team', authorize, teams.editTeam)
 
 // DELETE
-server.delete('/delete/runs/:id', authorize, runs.deleteRun)
+server.delete('runs/:id', authorize, runs.deleteRun)
 // server.delete('/delete/users/:id', authorize, users.deleteUser)
 server.delete('/team/:team', authorize, teams.deleteTeam)
 

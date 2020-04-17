@@ -47,7 +47,10 @@ function editRun(idRun, runData) {
     )
     .catch(err => err)
 }
-function deleteRun() {}
+function deleteRun(runId) {
+  return db.query("DELETE FROM runs WHERE id=($1)", [runId])
+  .catch(err => err)
+}
 
 module.exports = {
   getAllRuns, // New query 
