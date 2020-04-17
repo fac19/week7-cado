@@ -10,33 +10,49 @@ To access most of the routes you will need to create a user in the POST section 
 
 ## Set up instructions
 
+**NB wherever we refer to '`myuser`' and '`mypassword`', this needs to be set to your preferred local superuser if you have one, otherwise it can be set up in the following way in SQL (executing `$ psql` in your terminal)**
+
+```sql
+CREATE USER myuser WITH PASSWORD mypassword;
+ALTER USER myuser WITH SUPERUSER;
+```
+
 1. Clone this repo
 2. Run `npm i` on your terminal to install dependencies
-3. Run `npm run dev` to start development server
-4. Run `npm test` to run tests
-5. Create a `.env` file in the root folder with the following inside
-6. Run these commands in your terminal to set up user, app database and test database
+3. Create a `.env` file in the root folder with the following inside:
 
 ```
 PGDATABASE=week7cado_db
 PGUSER=myuser
 PGPASSWORD=mypassword
+JWT_SECRET=mysecret
 ```
 
-1. Run `psql` to enter Postgres CLI
+4. Initialise the dev and test databases:
 
 ```
-CREATE USER myuser WITH PASSWORD mypassword;
-ALTER USER myuser WITH SUPERUSER;
 CREATE DATABASE week7cado_db WITH OWNER myuser;
 CREATE DATABASE week7cado_test_db WITH OWNER myuser;
+\c week7cado_db;
+\i database/init.sql;
+\c week7cado_test_db;
+\i database/init.sql;
 ```
 
-2. Connect to database `# \c week7cado_db`
-3. Initialise database `# \i database/init.sql`
-4. then grant privileges:
-   * `GRANT ALL PRIVILEGES ON DATABASE week7cado_db TO your-username;`
-   * `GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO your-username;`
+5. Ensure the test script in package.json refers to your local test database, i.e. 
+
+```json
+"scripts": {
+    "test": "tape PGDATABASE=week7cado_test_db | tap-spec",
+    ...
+    }
+```
+
+6. Run `npm test` to run tests
+7. Run `npm run dev` to start development server
+8. If you are having issues with anything related to accessing the databases you have created, you may need to grant privileges:
+   * `GRANT ALL PRIVILEGES ON DATABASE week7cado_db TO myuser;`
+   * `GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO myuser;`
 
 
 
