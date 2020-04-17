@@ -6,7 +6,7 @@ dotenv.config()
 const SECRET = process.env.JWT_SECRET
 
 function getAllMyRuns(req, res, next) {
-  const userId = 3
+  const userId = 3 // Need to get this out of auth header instead of hard coding
   modelRuns
     .getAllMyRuns(userId)
     .then(runs => {
@@ -16,7 +16,7 @@ function getAllMyRuns(req, res, next) {
 }
 
 function getRunsInDates(req, res, next) {
-  const userId = 1
+  const userId = 1 // Need to get this out of auth header instead of hard coding
   const date1 = req.params.date1
   const date2 = req.params.date2
   modelRuns
