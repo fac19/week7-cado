@@ -38,40 +38,6 @@ CREATE DATABASE week7cado_test_db WITH OWNER myuser";
    * `GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO your-username;`
 
 
-## Database Schema
-![](https://i.imgur.com/wc1uZ0t.png)
-
-```sql=
-users(
-    id SERIAL PRIMARY KEY,
-    username VARCHAR(255) NOT NULL UNIQUE, 
-    email VARCHAR(255) NOT NULL UNIQUE, 
-    password VARCHAR(255) NOT NULL
-); 
-
-teams(
-    id SERIAL PRIMARY KEY,
-    team_name VARCHAR(255) NOT NULL UNIQUE, 
-    goal_distance INTEGER,
-    captain INTEGER REFERENCES users(id)
-); 
-
-runs(
-    id SERIAL PRIMARY KEY,
-    user_id INTEGER REFERENCES users(id), 
-    distance DECIMAL NOT NULL, 
-    start_time TIME NOT NULL, 
-    end_time TIME NOT NULL,
-    date DATE NOT NULL
-);
-
-users_teams(
-    user_id INTEGER REFERENCES users(id),
-    team_id INTEGER REFERENCES teams(id)
-);
-```
-
----
 
 ## API routes you can access
 ### GET 
@@ -216,7 +182,9 @@ users_teams(
 }
 ```
 
-`POST` - `https://week7-cado.herokuapp.com//create/run`
+---
+
+`POST` - `https://week7-cado.herokuapp.com/create/run`
 
 > you can create a run by providing the following request body to our API:
 
@@ -242,7 +210,7 @@ users_teams(
 
 `PUT` - `https://week7-cado.herokuapp.com/update/team/:team`
 
-> you can update team's name with providing one parameter in the url. `:team` is a place holder for the name of your team. This url takes request body.
+> you can update a team by providing its current name in the url. `:team` is a place holder for the name of your team. This url takes request body.
 
 ```json
 // example route that update monkey team
@@ -256,6 +224,7 @@ users_teams(
 
 // response
 {
+  "message": "monkey updated"
 }
 ```
 
@@ -263,7 +232,7 @@ users_teams(
 ### DELETE
 
 `DELETE` - `https://week7-cado.herokuapp.com/delete/teams/:team`
-> you can delete team's name with providing one parameter in the url. `:team` is a place holder for the name of your team. This url doesn't take request body.
+> you can delete teamby including it in the url. `:team` is a place holder for the name of your team. This url doesn't take request body.
 
 ```json
 // example route that update monkey team
@@ -275,3 +244,37 @@ users_teams(
    "message": "monkey team has been deleted"
 }
 ```
+
+## Database Schema
+![](https://i.imgur.com/wc1uZ0t.png)
+
+```sql=
+users(
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(255) NOT NULL UNIQUE, 
+    email VARCHAR(255) NOT NULL UNIQUE, 
+    password VARCHAR(255) NOT NULL
+); 
+
+teams(
+    id SERIAL PRIMARY KEY,
+    team_name VARCHAR(255) NOT NULL UNIQUE, 
+    goal_distance INTEGER,
+    captain INTEGER REFERENCES users(id)
+); 
+
+runs(
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users(id), 
+    distance DECIMAL NOT NULL, 
+    start_time TIME NOT NULL, 
+    end_time TIME NOT NULL,
+    date DATE NOT NULL
+);
+
+users_teams(
+    user_id INTEGER REFERENCES users(id),
+    team_id INTEGER REFERENCES teams(id)
+);
+```
+
