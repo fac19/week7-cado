@@ -1,5 +1,5 @@
 
-# CODA :woman-running: 
+# CODA 
 Week 7
 
 ## Project description
