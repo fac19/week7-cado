@@ -92,7 +92,7 @@ CREATE DATABASE week7cado_test_db WITH OWNER myuser";
 ```
 ---
 
-`GET` - `https://week7-cado.herokuapp.com/users/teams`
+`GET` - `https://week7-cado.herokuapp.com/teams`
 
 > You can request all of the teams [Example URL](https://week7-cado.herokuapp.com/teams)
 
