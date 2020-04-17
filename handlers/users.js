@@ -45,7 +45,7 @@ function logIn (req, res, next) {
                 next(error)
             } else {
                 const token = jwt.sign({user: user.id}, SECRET, {expiresIn: "1h"})
-                res.status(201).send({ access_token: token})
+                res.status(200).send({ access_token: token})
             }
 
             })
