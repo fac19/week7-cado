@@ -1,7 +1,7 @@
 
 # Running With Friends
 Week 7
-[initial Miro design](https://miro.com/app/board/o9J_ktk4_xk=/)
+[initial Miro design](https://miro.com/welcomeonboard/b0542lDJjZSaQGsh7tgFvD6QeRYynEkgBlNKPbeW3k6dXzTASAV1N0NR3TZbXVdE)
 
 ## Project description
 We Created and API where you can store and access data regarding your runs and running teams you are part of. Please read the API routes section for info on how to access the data.
