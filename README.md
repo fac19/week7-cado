@@ -13,7 +13,7 @@ To access most of the routes you will need to create a user in the POST section 
 **NB wherever we refer to '`myuser`' and '`mypassword`', this needs to be set to your preferred local superuser if you have one, otherwise it can be set up in the following way in SQL (executing `$ psql` in your terminal)**
 
 ```sql
-CREATE USER myuser WITH PASSWORD mypassword;
+CREATE USER myuser WITH PASSWORD 'mypassword';
 ALTER USER myuser WITH SUPERUSER;
 ```
 
