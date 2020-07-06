@@ -185,7 +185,6 @@ FOREIGN KEY (team_id) REFERENCES books(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 # Week 7 SGC
 ## Stop
-- Being so slow with learning new things like Express. I'd already got it by Sunday
 - Mapping promises you can't keep
 
 ## Go
@@ -210,10 +209,6 @@ FOREIGN KEY (team_id) REFERENCES books(id) ON UPDATE CASCADE ON DELETE CASCADE;
 ---
 
 ## Week 7 Minutes
-## S
-- Jack: James you need to be more aware of the general learning pace.
-
-- Action James: Stop being so passive agressive. We all know you are right.... semantically
 
 ## G
 - Jack: yes we will need to ensure that everyone succeeds. We are CADO
